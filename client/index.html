@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестовое задание Контакт-Центр</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <p><b>One:</b><br>
+        <input type="text" size="40" id="input_one">
+        <p><b>Two:</b><br>
+            <input type="text" size="40" id="input_two">
+
+            <p><button onclick="sendRequest()" id="submit">Отправить</button>
+                <button onclick="getAllData()" id="btn_show">Отобразить</button></p>
+
+            <div id="b_table" class="hidden" >
+                <button id="clear" onclick="clearTable()">Очистить</button>
+                <table>
+                    <tr>
+                        <td>One</td>
+                        <td>Two</td>
+                    </tr>
+                    <tbody></tbody>
+                </table>
+               
+        </p>
+        </div>
+        <script src="index.js"></script>
+</body>
+
+</html>
