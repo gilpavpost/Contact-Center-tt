@@ -22,6 +22,8 @@ function clearTable() {
   document.getElementById("b_table").classList.add("hidden");
   document.getElementById("input_one").value = "";
   document.getElementById("input_two").value = "";
+  document.querySelector("tbody").innerHTML = '';
+  document.getElementById("submit").className = '';
 }
 function generateTable(data) {
   var tbody = document.querySelector("tbody");

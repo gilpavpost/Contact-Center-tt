@@ -7,17 +7,23 @@ html body {
 }
 
 .hidden {
-   visibility: hidden;
+    visibility: hidden;
 }
+
 .green {
     background-color: green;
     color: white;
 }
+
 .red {
     background-color: red;
     color: white;
 }
-table,td
-{
-	border:1px solid gray
+
+td {
+    border: 1px solid gray
+}
+
+table {
+    padding: 20px;
 }

@@ -1,57 +1,46 @@
 const express = require("express");
 const cors = require("cors");
-const pg = require("pg")
+const db = require("./db");
 
 const app = express();
-const server= {
-    host: "localhost",
-    port: "80"
-}
-
-const db = new pg.Pool({
-  user: "postgres",
+const server = {
   host: "localhost",
-  database: "contactdb",
-  password: "er5jk8",
-  port: 5432,
-});
+  port: "80",
+};
 
 app.use(cors());
 app.use(express.json());
 
-
-function insertRequest(data) {
+app.post("/send", (req, response) => {
   let date = new Date();
   let formatedDate =
     date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-  var query = `INSERT INTO table1 ("One", "Two", "Date") VALUES ('${data.one}', '${data.two}', '${formatedDate}')`;
-  db.connect();
-  db.query(query, (err, data) => {
-    if (err) throw new Error(err);
-    db.end();
-  });
-}
 
-app.post("/send", (req, response) => {
-  insertRequest(req.body);
-  response.json({
-    message: "accepted",
-  });
+  db.query(
+    `INSERT INTO table1 ("One", "Two", "Date") VALUES ('${req.one}', '${req.two}', '${formatedDate}')`,
+    (err, res) => {
+      if (err) {
+        response.json({
+          message: "fail",
+        });
+        return next(error);
+      }
+      response.json({
+        message: "accepted",
+      });
+    }
+  );
 });
 
 app.post("/getdata", (req, response) => {
-  db.connect();
-  db.query('SELECT "One", "Two" FROM table1')
-    .then((res) => {
-      response.json(res.rows);
-      db.end();
-    })
-    .catch((e) => {
-        db.end();
-        console.error(e.stack)});
+  db.query('SELECT "One", "Two" FROM table1', (err, res) => {
+    if (err) {
+      return next(error);
+    }
+    response.json(res.rows);
+  });
 });
 
-
 app.listen(server.port, server.host, () => {
-  console.log("server is running on http://"+ server.host+":"+server.port);
+  console.log("server is running on http://" + server.host + ":" + server.port);
 });
