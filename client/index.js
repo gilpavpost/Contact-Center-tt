@@ -1,14 +1,9 @@
 var btn_submit = document.getElementById("submit");
 var btn_getData = document.getElementById("getData");
 
-var request_data = {
-  one: document.getElementById("input_one").value,
-  two: document.getElementById("input_two").value,
-};
-
 function coloredButton(color) {
   var element = document.getElementById("submit");
-  
+
   if (color == "green") {
     element.classList.remove("red");
     element.classList.add("green");
@@ -22,8 +17,8 @@ function clearTable() {
   document.getElementById("b_table").classList.add("hidden");
   document.getElementById("input_one").value = "";
   document.getElementById("input_two").value = "";
-  document.querySelector("tbody").innerHTML = '';
-  document.getElementById("submit").className = '';
+  document.querySelector("tbody").innerHTML = "";
+  document.getElementById("submit").className = "";
 }
 function generateTable(data) {
   var tbody = document.querySelector("tbody");
@@ -37,8 +32,11 @@ function generateTable(data) {
   }
 }
 function sendRequest() {
-  var url = "http://localhost:80/send";
-
+  let url = "http://localhost:80/send";
+  let request_data = {
+    one: document.getElementById("input_one").value,
+    two: document.getElementById("input_two").value,
+  };
   fetch(url, {
     method: "POST",
     headers: {

@@ -12,12 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/send", (req, response) => {
-  let date = new Date();
-  let formatedDate =
-    date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-
+ 
   db.query(
-    `INSERT INTO table1 ("One", "Two", "Date") VALUES ('${req.one}', '${req.two}', '${formatedDate}')`,
+    `INSERT INTO table1 ("One", "Two", "Date") VALUES ('${req.body.one}', '${req.body.two}', NOW())`,
     (err, res) => {
       if (err) {
         response.json({
